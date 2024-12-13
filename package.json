@@ -1,0 +1,40 @@
+{
+  "scripts": {
+    "build": "pnpm -r --filter='./packages/*' run build",
+    "dev": "pnpm -r --parallel --filter='./packages/*' run dev",
+    "preinstall": "npx only-allow pnpm",
+    "format": "prettier --write --cache .",
+    "lint": "eslint \"./packages/**/{src,test}/**/*.{vue,ts,tsx,js,mjs,cjs}\"",
+    "typecheck": "pnpm -r --parallel run typecheck",
+    "release": "pnpm -r --parallel --filter='./packages/*' run release"
+  },
+  "nano-staged": {
+    "*.md": "prettier --write",
+    "*.{ts,tsx,js,vue,less}": "prettier --write",
+    "*.{ts,tsx,js,vue}": "eslint --fix"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.15.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "repository": {
+    "type": "git",
+    "url": "",
+    "directory": "src"
+  },
+  "author": "vyron",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "bumpp": "^9.9.0",
+    "eslint": "^9.16.0",
+    "less": "^4.2.1",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "unbuild": "^3.0.0-rc.11",
+    "vite": "^6.0.3",
+    "vite-plugin-dts": "^4.3.0",
+    "vue": "^3.5.13"
+  }
+}

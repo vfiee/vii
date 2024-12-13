@@ -1,0 +1,39 @@
+{
+  "name": "@vii/ui",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "lib/vu.cjs.js",
+  "module": "es/index.mjs",
+  "style": "lib/index.css",
+  "typings": "lib/index.d.ts",
+  "unpkg": "lib/vu.min.js",
+  "jsdelivr": "lib/vu.min.js",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "dev": "vite"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "ui",
+    "vue",
+    "vue3",
+    "mobile",
+    "pc",
+    "frontend",
+    "component",
+    "components"
+  ],
+  "author": "vyron",
+  "license": "MIT",
+  "sideEffects": [
+    "es/**/style/*",
+    "lib/**/style/*",
+    "*.css"
+  ]
+}

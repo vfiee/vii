@@ -1,0 +1,22 @@
+{
+  "name": "@vii/shared",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "lib/index.cjs.js",
+  "module": "es/index.mjs",
+  "typings": "es/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib/index.cjs",
+      "import": "./es/index.mjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "vyron",
+  "license": "Mit"
+}
