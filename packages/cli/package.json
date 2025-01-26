@@ -1,22 +1,21 @@
 {
   "name": "@vii/cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "license": "MIT",
   "author": "vyron",
   "bin": {
+    "vi": "index.js",
     "vii": "index.js"
   },
   "files": [
     "index.js",
-    "template/*",
     "dist"
   ],
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp -y --all",
     "prepublishOnly": "pnpm run build"
   },
   "engines": {
@@ -24,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "",
+    "url": "https://github.com/vfiee/project-boilerplate",
     "directory": "packages/cli"
   },
-  "homepage": "",
+  "homepage": "https://github.com/vfiee/project-boilerplate",
   "devDependencies": {
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9",
@@ -35,6 +34,9 @@
     "minimist": "^1.2.8",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "unbuild": "^3.0.0-rc.11"
+    "unbuild": "^3.3.1"
+  },
+  "dependencies": {
+    "download-git-repo": "^3.0.2"
   }
 }

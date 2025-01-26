@@ -14,7 +14,11 @@
     "lib"
   ],
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@vii/shared": "workspace:1.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -35,5 +39,12 @@
     "es/**/style/*",
     "lib/**/style/*",
     "*.css"
-  ]
+  ],
+  "devDependencies": {
+    "unplugin-vue-define-options": "^1.5.3",
+    "vant": "^4.9.10"
+  },
+  "peerDependencies": {
+    "vant": "^4.9.10"
+  }
 }

@@ -1,22 +1,13 @@
 import spawn from 'cross-spawn'
+// @ts-expect-error download-git-repo has no ts version
+import download from 'download-git-repo'
 import minimist from 'minimist'
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import colors from 'picocolors'
 import prompts from 'prompts'
 
-const {
-  blue,
-  cyan,
-  green,
-  greenBright,
-  magenta,
-  red,
-  redBright,
-  reset,
-  yellow,
-} = colors
+const { blue, cyan, green, magenta, red, redBright, reset, yellow } = colors
 
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string. See #4606
@@ -41,7 +32,8 @@ Options:
   -t, --template NAME        use a specific template
 
 Available templates:
-${green     ('vue-ts         vue')}
+${green     ('vue-pc-ts      vue-pc')}
+${green     ('vue-mobile-ts  vue-mobile')}
 ${cyan      ('tauri-ts       tauri')}
 ${yellow    ('taro-ts        taro')}
 ${magenta   ('nest-ts        nest')}
@@ -68,26 +60,30 @@ const FRAMEWORKS: Framework[] = [
     color: green,
     variants: [
       {
-        name: 'vue-ts',
-        display: 'TypeScript',
+        name: 'vue-mobile-ts',
+        display: 'TypeScript(Mobile)',
         color: blue,
       },
       {
-        name: 'vue',
-        display: 'JavaScript',
+        name: 'vue-mobile',
+        display: 'JavaScript(Mobile)',
         color: yellow,
       },
       {
-        name: 'custom-create-vue',
-        display: 'Customize with create-vue ↗',
-        color: green,
-        customCommand: 'npm create vue@latest TARGET_DIR',
+        name: 'vue-pc-ts',
+        display: 'TypeScript(PC)',
+        color: blue,
       },
       {
-        name: 'custom-nuxt',
-        display: 'Nuxt ↗',
-        color: greenBright,
-        customCommand: 'npm exec nuxi init TARGET_DIR',
+        name: 'vue-pc',
+        display: 'JavaScript(PC)',
+        color: yellow,
+      },
+      {
+        name: 'custom-create-vite',
+        display: 'Customize with create-cite ↗',
+        color: green,
+        customCommand: 'pnpm create vite',
       },
     ],
   },
@@ -110,7 +106,7 @@ const FRAMEWORKS: Framework[] = [
         name: 'custom-create-tauri',
         display: 'Customize with create-tauri ↗',
         color: magenta,
-        customCommand: 'pnpm create tauri-app TARGET_DIR',
+        customCommand: 'pnpm create tauri-app',
       },
     ],
   },
@@ -125,9 +121,10 @@ const FRAMEWORKS: Framework[] = [
         color: blue,
       },
       {
-        name: 'nest',
-        display: 'JavaScript',
-        color: yellow,
+        name: 'custom-create-nest',
+        display: 'Customize with create-nest ↗',
+        color: magenta,
+        customCommand: 'pnpm install -g @nestjs/cli && nest new',
       },
     ],
   },
@@ -154,10 +151,6 @@ const TEMPLATES = FRAMEWORKS.map((f) => f.variants.map((v) => v.name)).reduce(
   (a, b) => a.concat(b),
   [],
 )
-
-const renameFiles: Record<string, string | undefined> = {
-  _gitignore: '.gitignore',
-}
 
 const defaultTargetDir = 'vii-project'
 
@@ -294,12 +287,6 @@ async function init() {
 
   // determine template
   let template: string = variant || framework?.name || argTemplate
-  let isReactSwc = false
-  if (template.includes('-swc')) {
-    isReactSwc = true
-    template = template.replace('-swc', '')
-  }
-
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'pnpm'
   const isYarn1 = pkgManager === 'yarn' && pkgInfo?.version.startsWith('1.')
@@ -348,37 +335,20 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  const templateDir = path.resolve(
-    fileURLToPath(import.meta.url),
-    '../',
-    `templates/${template}`,
-  )
+  await downloadProject(`vfiee/project-boilerplate`, root, variant)
 
-  const write = (file: string, content?: string) => {
-    const targetPath = path.join(root, renameFiles[file] ?? file)
-    if (content) {
-      fs.writeFileSync(targetPath, content)
-    } else {
-      copy(path.join(templateDir, file), targetPath)
-    }
-  }
-
-  const files = fs.readdirSync(templateDir)
-  for (const file of files.filter((f) => f !== 'package.json')) {
-    write(file)
+  const write = (file: string, content: string) => {
+    const targetPath = path.join(root, file)
+    fs.writeFileSync(targetPath, content)
   }
 
   const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, `package.json`), 'utf-8'),
+    fs.readFileSync(path.join(root, `package.json`), 'utf-8'),
   )
 
   pkg.name = packageName || getProjectName()
 
   write('package.json', JSON.stringify(pkg, null, 2) + '\n')
-
-  if (isReactSwc) {
-    setupReactSwc(root, template.endsWith('-ts'))
-  }
 
   const cdProjectName = path.relative(cwd, root)
   console.log(`\nDone. Now run:\n`)
@@ -466,24 +436,20 @@ function pkgFromUserAgent(userAgent: string | undefined) {
   }
 }
 
-function setupReactSwc(root: string, isTs: boolean) {
-  editFile(path.resolve(root, 'package.json'), (content) => {
-    return content.replace(
-      /"@vitejs\/plugin-react": ".+?"/,
-      `"@vitejs/plugin-react-swc": "^3.5.0"`,
-    )
+function downloadProject(
+  project: string,
+  dest: string,
+  branch: string = 'main',
+) {
+  const { promise, resolve, reject } = Promise.withResolvers()
+  download(`${project}#${branch}`, dest, (err?: Error) => {
+    if (err) {
+      reject(err)
+      return
+    }
+    resolve(true)
   })
-  editFile(
-    path.resolve(root, `vite.config.${isTs ? 'ts' : 'js'}`),
-    (content) => {
-      return content.replace('@vitejs/plugin-react', '@vitejs/plugin-react-swc')
-    },
-  )
-}
-
-function editFile(file: string, callback: (content: string) => string) {
-  const content = fs.readFileSync(file, 'utf-8')
-  fs.writeFileSync(file, callback(content), 'utf-8')
+  return promise
 }
 
 init().catch((e) => {
