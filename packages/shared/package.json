@@ -12,6 +12,10 @@
       "import": "./es/index.mjs"
     }
   },
+  "files": [
+    "es",
+    "lib"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build"

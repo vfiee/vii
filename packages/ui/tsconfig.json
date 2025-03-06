@@ -1,4 +1,9 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {}
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "paths": {
+      "vant": ["node_modules/vant"]
+    }
+  }
 }

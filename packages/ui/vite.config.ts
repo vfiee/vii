@@ -1,54 +1,56 @@
 import vue from '@vitejs/plugin-vue'
-import DefineOptions from 'unplugin-vue-define-options/vite'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { version } from './package.json'
 
 export default defineConfig({
+  define: {
+    __VERSION__: JSON.stringify(version),
+  },
   build: {
     minify: true,
+    sourcemap: true,
+    lib: {
+      name: 'VUI',
+      entry: resolve(__dirname, 'index.ts'),
+    },
     rollupOptions: {
       external: ['vue', /\.less/, '@vii/shared'],
-      input: ['./src/picker-env/index.ts'],
       output: [
         {
-          dir: './es',
-          format: 'es',
-          exports: 'named',
-          entryFileNames: '[name].mjs',
+          format: 'cjs',
+          preserveModules: true,
+          preserveModulesRoot: __dirname,
+          dir: 'lib',
+          entryFileNames: '[name].cjs',
         },
         {
-          dir: './lib',
-          format: 'cjs',
-          exports: 'named',
-          entryFileNames: '[name].js',
+          format: 'es',
+          preserveModules: true,
+          preserveModulesRoot: __dirname,
+          dir: 'es',
+          entryFileNames: '[name].mjs',
         },
       ],
-    },
-    lib: {
-      entry: './index.ts',
-      name: 'ui',
     },
   },
   plugins: [
     vue(),
     dts({
-      entryRoot: './src',
-      rollupTypes: true,
-      outDir: ['./es', './lib'],
-      tsconfigPath: './tsconfig.json',
-    }),
-    DefineOptions(),
-    {
-      name: 'file',
-      generateBundle(config, bundle) {
-        const keys = Object.keys(bundle)
-        for (const key of keys) {
-          this.emitFile({
-            type: 'asset',
-            fileName: key,
-          })
-        }
+      exclude: ['node_modules'],
+      outDir: ['es', 'lib'],
+      compilerOptions: {
+        sourceMap: false,
+        paths: {
+          '@/*': ['./*'],
+          vui: ['.'],
+          vant: ['node_modules/vant'],
+        },
       },
-    },
+      rollupTypes: true,
+      copyDtsFiles: true,
+      pathsToAliases: false,
+    }),
   ],
 })
