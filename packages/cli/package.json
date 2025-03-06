@@ -16,7 +16,8 @@
     "dev": "unbuild --stub",
     "build": "unbuild",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp -y --all"
   },
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
