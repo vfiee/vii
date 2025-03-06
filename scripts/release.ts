@@ -4,7 +4,10 @@ import { logRecentCommits, run } from './releaseUtils'
 release({
   repo: 'vyron',
   packages: ['cli', 'shared'],
-  toTag: (pkg, version) => `${pkg}@${version}`,
+  toTag: (pkg, version) => {
+    const isCli = pkg === 'cli'
+    return `${isCli ? '@vyron' : '@vii'}/${pkg}@${version}`
+  },
   logChangelog: (pkg) => logRecentCommits(pkg),
   generateChangelog: async (pkgName) => {
     console.log('\nGenerating changelog...')

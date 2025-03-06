@@ -20,7 +20,8 @@ export async function getLatestTag(pkgName: string): Promise<string> {
     await readFile(`packages/${pkgName}/package.json`, 'utf-8'),
   )
   const version = pkgJson.version
-  return pkgName === 'vite' ? `v${version}` : `${pkgName}@${version}`
+  const isCli = pkgName === 'cli'
+  return `${isCli ? '@vyron' : '@vii'}/${pkgName}@${version}`
 }
 
 export async function logRecentCommits(pkgName: string): Promise<void> {

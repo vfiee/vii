@@ -1,6 +1,6 @@
 {
   "name": "@vii/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "license": "MIT",
   "author": "vyron",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vfiee/project-boilerplate",
+    "url": "git+https://github.com/vfiee/project-boilerplate.git",
     "directory": "packages/cli"
   },
   "homepage": "https://github.com/vfiee/project-boilerplate",
