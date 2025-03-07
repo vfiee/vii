@@ -140,7 +140,7 @@ export const release = async (options: ReleaseOptions): Promise<void> => {
       colors.green(
         `
 Pushed, publishing should starts shortly on CI.
-https://github.com/vii/${repo}/actions/workflows/publish.yml`,
+https://github.com/vfiee/${repo}/actions/workflows/publish.yml`,
       ),
     )
   }
