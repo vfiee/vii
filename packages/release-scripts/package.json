@@ -1,6 +1,6 @@
 {
   "name": "@vii/release-scripts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "版本发布脚本",
   "type": "module",
   "exports": {
