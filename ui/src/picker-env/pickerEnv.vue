@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { PickerConfirmEventParams } from 'vant';
-import { watch } from 'vue';
-import { EnvConfig } from './type';
-import { getEnvs, useEnvStore } from './utils';
+import { PickerConfirmEventParams } from 'vant'
+import { watch } from 'vue'
+import { EnvConfig } from './type'
+import { getEnvs, useEnvStore } from './utils'
 
 defineOptions({
   name: 'PickerEnv',

@@ -14,7 +14,7 @@ const shouldTypeCheck = typeof process.env.VSCODE_PID === 'string'
 
 export default tseslint.config(
   {
-    ignores: ['**/dist/**', '**/*.snap']
+    ignores: ['**/dist/**', '**/*.snap'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -27,21 +27,21 @@ export default tseslint.config(
       parserOptions: {
         sourceType: 'module',
         ecmaVersion: 2022,
-        project: shouldTypeCheck ? ['./packages/*/tsconfig.json'] : undefined
+        project: shouldTypeCheck ? ['./packages/*/tsconfig.json'] : undefined,
       },
       globals: {
         ...globals.es2021,
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     settings: {
       node: {
-        version: '^18.0.0 || ^20.0.0 || >=22.0.0'
-      }
+        version: '^18.0.0 || ^20.0.0 || >=22.0.0',
+      },
     },
     plugins: {
       n: pluginN,
-      'import-x': pluginImportX
+      'import-x': pluginImportX,
     },
     rules: {
       'n/no-exports-assign': 'error',
@@ -57,8 +57,8 @@ export default tseslint.config(
       'prefer-const': [
         'warn',
         {
-          destructuring: 'all'
-        }
+          destructuring: 'all',
+        },
       ],
 
       'n/no-missing-require': [
@@ -66,8 +66,8 @@ export default tseslint.config(
         {
           // for try-catching yarn pnp
           allowModules: ['pnpapi', 'vite'],
-          tryExtensions: ['.ts', '.js', '.jsx', '.tsx', '.d.ts']
-        }
+          tryExtensions: ['.ts', '.js', '.jsx', '.tsx', '.d.ts'],
+        },
       ],
       'n/no-extraneous-import': [
         'error',
@@ -79,30 +79,26 @@ export default tseslint.config(
             'sass-embedded',
             'lightningcss',
             'vitest',
-            'unbuild'
-          ]
-        }
+            'unbuild',
+          ],
+        },
       ],
       'n/no-extraneous-require': [
         'error',
         {
-          allowModules: ['vite']
-        }
+          allowModules: ['vite'],
+        },
       ],
 
       '@typescript-eslint/ban-ts-comment': 'error',
       '@typescript-eslint/no-unsafe-function-type': 'off',
-      '@typescript-eslint/explicit-module-boundary-types': [
-        'error',
-        { allowArgumentsExplicitlyTypedAsAny: true }
-      ],
       '@typescript-eslint/no-empty-function': [
         'error',
-        { allow: ['arrowFunctions'] }
+        { allow: ['arrowFunctions'] },
       ],
       '@typescript-eslint/no-empty-object-type': [
         'error',
-        { allowInterfaces: 'with-single-extends' }
+        { allowInterfaces: 'with-single-extends' },
       ],
       '@typescript-eslint/no-empty-interface': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
@@ -118,13 +114,13 @@ export default tseslint.config(
           caughtErrorsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          ignoreRestSiblings: true
-        }
+          ignoreRestSiblings: true,
+        },
       ],
       '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/consistent-type-imports': [
         'error',
-        { prefer: 'type-imports', disallowTypeAnnotations: false }
+        { prefer: 'type-imports', disallowTypeAnnotations: false },
       ],
       // disable rules set in @typescript-eslint/stylistic which conflict with current code
       // we should discuss if we want to enable these as they encourage consistent code
@@ -135,7 +131,7 @@ export default tseslint.config(
 
       'import-x/no-nodejs-modules': [
         'error',
-        { allow: builtinModules.map((mod) => `node:${mod}`) }
+        { allow: builtinModules.map((mod) => `node:${mod}`) },
       ],
       'import-x/no-duplicates': 'error',
       'import-x/order': 'error',
@@ -146,22 +142,22 @@ export default tseslint.config(
           ignoreDeclarationSort: true,
           ignoreMemberSort: false,
           memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-          allowSeparatedGroups: false
-        }
+          allowSeparatedGroups: false,
+        },
       ],
 
       'regexp/prefer-regexp-exec': 'error',
       'regexp/prefer-regexp-test': 'error',
       // in some cases using explicit letter-casing is more performant than the `i` flag
-      'regexp/use-ignore-case': 'off'
-    }
+      'regexp/use-ignore-case': 'off',
+    },
   },
   {
     name: 'disables/dts',
     files: ['**/*.d.ts'],
     rules: {
       '@typescript-eslint/consistent-indexed-object-style': 'off',
-      '@typescript-eslint/triple-slash-reference': 'off'
-    }
-  }
+      '@typescript-eslint/triple-slash-reference': 'off',
+    },
+  },
 )

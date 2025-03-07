@@ -1,9 +1,9 @@
-import spawn from 'cross-spawn'
-// @ts-expect-error download-git-repo has no ts version
-import download from 'download-git-repo'
-import minimist from 'minimist'
 import fs from 'node:fs'
 import path from 'node:path'
+import spawn from 'cross-spawn'
+// @ts-expect-error download-git-repo has no ts types
+import download from 'download-git-repo'
+import minimist from 'minimist'
 import colors from 'picocolors'
 import prompts from 'prompts'
 
@@ -32,12 +32,12 @@ Options:
   -t, --template NAME        use a specific template
 
 Available templates:
-${green     ('vue-pc-ts      vue-pc')}
-${green     ('vue-mobile-ts  vue-mobile')}
-${cyan      ('tauri-ts       tauri')}
-${yellow    ('taro-ts        taro')}
-${magenta   ('nest-ts        nest')}
-${redBright ('uniapp-ts      uniapp')}`
+${green('vue-pc-ts      vue-pc')}
+${green('vue-mobile-ts  vue-mobile')}
+${cyan('tauri-ts       tauri')}
+${yellow('taro-ts        taro')}
+${magenta('nest-ts        nest')}
+${redBright('uniapp-ts      uniapp')}`
 
 type ColorFunc = (str: string | number) => string
 type Framework = {
@@ -286,7 +286,7 @@ async function init() {
   }
 
   // determine template
-  let template: string = variant || framework?.name || argTemplate
+  const template: string = variant || framework?.name || argTemplate
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'pnpm'
   const isYarn1 = pkgManager === 'yarn' && pkgInfo?.version.startsWith('1.')

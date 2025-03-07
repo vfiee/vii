@@ -1,10 +1,10 @@
-import { release } from '@vitejs/release-scripts'
+import { release } from '@vii/release-scripts'
 import { logRecentCommits, run } from './releaseUtils'
 
 release({
-  repo: 'vyron',
+  repo: 'vii',
   packages: ['cli', 'shared'],
-  toTag: (pkg, version) => version,
+  toTag: (pkg, version) => `${pkg}@${version}`,
   logChangelog: (pkg) => logRecentCommits(pkg),
   generateChangelog: async (pkgName) => {
     console.log('\nGenerating changelog...')

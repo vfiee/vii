@@ -1,3 +1,15 @@
+## [0.0.6](https://github.com/vfiee/project-boilerplate/compare/0.0.5...0.0.6) (2025-03-07)
+
+
+
+## [0.0.6](https://github.com/vfiee/project-boilerplate/compare/0.0.5...0.0.6) (2025-03-07)
+
+
+
+## [0.0.6](https://github.com/vfiee/project-boilerplate/compare/0.0.5...0.0.6) (2025-03-07)
+
+
+
 ## 0.0.5 (2025-03-07)
 
 

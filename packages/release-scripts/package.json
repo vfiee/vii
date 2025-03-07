@@ -1,0 +1,41 @@
+{
+  "name": "@vii/release-scripts",
+  "version": "0.0.1",
+  "description": "版本发布脚本",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "execa": "^8.0.1",
+    "mri": "^1.2.0",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
+    "publint": "^0.3.2",
+    "semver": "^7.6.3"
+  },
+  "devDependencies": {
+    "@arnaud-barre/tnode": "^0.24.0",
+    "@types/node": "^22.10.9",
+    "@types/prompts": "^2.4.9",
+    "@types/semver": "^7.5.8",
+    "esbuild": "^0.24.2"
+  },
+  "keywords": [],
+  "author": "vyron",
+  "license": "Mit"
+}
