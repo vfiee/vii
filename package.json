@@ -11,7 +11,7 @@
     "build": "pnpm -r --filter='./packages/*' run build",
     "typecheck": "tsc -p scripts --noEmit && pnpm -r --parallel run typecheck",
     "release": "tsx scripts/release.ts",
-    "ci-publish": "tsx scripts/publishCI.ts"
+    "ci-publish": "cross-env NPM_TOKEN=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 tsx scripts/publishCI.ts @vyron/cli@0.0.3"
   },
   "nano-staged": {
     "*.md": "prettier --write",
@@ -49,6 +49,7 @@
     "add": "^2.0.6",
     "bumpp": "^9.9.0",
     "conventional-changelog-cli": "^5.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^9.16.0",
     "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-n": "^17.15.1",
