@@ -45,8 +45,7 @@
   "devDependencies": {
     "@types/cross-spawn": "^6.0.6",
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vitejs/release-scripts": "^1.3.3",
-    "@vyron/release-scripts": "workspace:^",
+    "@vyron/release-scripts": "^1.0.0",
     "add": "^2.0.6",
     "bumpp": "^9.9.0",
     "conventional-changelog-cli": "^5.0.0",
