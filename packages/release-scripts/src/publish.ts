@@ -42,6 +42,6 @@ export const publish = async (options: PublishOptions): Promise<void> => {
       ? 'alpha'
       : activeVersion && semver.lt(pkg.version, activeVersion)
         ? 'previous'
-        : version
+        : undefined
   await publishPackage(pkgDir, releaseTag, provenance, packageManager)
 }

@@ -10,7 +10,7 @@
     "build": "pnpm -r --filter='./packages/*' run build",
     "typecheck": "tsc -p scripts --noEmit && pnpm -r --parallel run typecheck",
     "release": "tsx scripts/release.ts",
-    "ci-publish": "cross-env NPM_TOKEN=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 tsx scripts/publishCI.ts cli@0.0.6"
+    "ci-publish": "tsx scripts/publishCI.ts"
   },
   "nano-staged": {
     "*.md": "prettier --write",
