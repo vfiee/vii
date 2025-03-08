@@ -172,12 +172,6 @@ export async function getActiveVersion(
     return (await run('npm', ['info', npmName, 'version'], { stdio: 'pipe' }))
       .stdout
   } catch (e: any) {
-    console.log(`error:`, e)
-    console.log(
-      `e.stderr.startsWith('npm error code E404'):`,
-      e.stderr.startsWith('npm error code E404'),
-    )
-    console.log(e.stderr)
     // Not published yet
     if (e.stderr.startsWith('npm error code E404')) return
     throw e
