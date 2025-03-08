@@ -1,4 +1,4 @@
-import { release } from '@vii/release-scripts'
+import { release } from '@vyron/release-scripts'
 import { logRecentCommits, run } from './releaseUtils'
 
 release({

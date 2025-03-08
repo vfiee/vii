@@ -1,3 +1,3 @@
-import { publish } from '@vii/release-scripts'
+import { publish } from '@vyron/release-scripts'
 
 publish({ defaultPackage: '', provenance: false, packageManager: 'pnpm' })
