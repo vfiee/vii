@@ -6,6 +6,7 @@ import download from 'download-git-repo'
 import minimist from 'minimist'
 import colors from 'picocolors'
 import prompts from 'prompts'
+import { version } from '../package.json'
 
 const { green, red, reset, yellow } = colors
 
@@ -16,7 +17,7 @@ const argv = minimist<{
   help?: boolean
 }>(process.argv.slice(2), {
   default: { help: false },
-  alias: { h: 'help', t: 'template' },
+  alias: { h: 'help', t: 'template', v: 'version' },
   string: ['_'],
 })
 const cwd = process.cwd()
@@ -39,6 +40,9 @@ ${red('vue-mobile')}`
 // ${yellow('taro')}
 // ${magenta('nest')}
 // ${redBright('uniapp')}
+
+const versionMessage = `\
+${green(`vii current version: v${version}`)}`
 
 type ColorFunc = (str: string | number) => string
 type Framework = {
@@ -148,10 +152,14 @@ const defaultTargetDir = 'vii-project'
 async function init() {
   const argTargetDir = formatTargetDir(argv._[0])
   const argTemplate = argv.template || argv.t
+  const version = argv.version || argv.v
 
   const help = argv.help
   if (help) {
     console.log(helpMessage)
+    return
+  } else if (version) {
+    console.log(versionMessage)
     return
   }
 
