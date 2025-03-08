@@ -440,7 +440,7 @@ function downloadProject(
   dest: string,
   branch: string = 'main',
 ) {
-  const { promise, resolve, reject } = Promise.withResolvers()
+  const { promise, resolve, reject } = promisify()
   download(`${project}#${branch}`, dest, (err?: Error) => {
     if (err) {
       reject(err)
@@ -449,6 +449,19 @@ function downloadProject(
     resolve(true)
   })
   return promise
+}
+
+Promise.withResolvers()
+
+function promisify<T = any>(): PromiseWithResolvers<T> {
+  let resolve: (value: T | PromiseLike<T>) => void
+  let reject: (reason?: any) => void
+  const promise = new Promise<T>((_resolve, _reject) => {
+    resolve = _resolve
+    reject = _reject
+  })
+  // @ts-expect-error ts expect error on this
+  return { promise, resolve, reject }
 }
 
 init().catch((e) => {
