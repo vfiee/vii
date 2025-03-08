@@ -7,7 +7,7 @@ import minimist from 'minimist'
 import colors from 'picocolors'
 import prompts from 'prompts'
 
-const { blue, cyan, green, magenta, red, redBright, reset, yellow } = colors
+const { green, red, reset, yellow } = colors
 
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string. See #4606
@@ -32,12 +32,13 @@ Options:
   -t, --template NAME        use a specific template
 
 Available templates:
-${green('vue-pc-ts      vue-pc')}
-${green('vue-mobile-ts  vue-mobile')}
-${cyan('tauri-ts       tauri')}
-${yellow('taro-ts        taro')}
-${magenta('nest-ts        nest')}
-${redBright('uniapp-ts      uniapp')}`
+${green('vue-pc')}
+${red('vue-mobile')}`
+
+// ${cyan('tauri')}
+// ${yellow('taro')}
+// ${magenta('nest')}
+// ${redBright('uniapp')}
 
 type ColorFunc = (str: string | number) => string
 type Framework = {
@@ -60,19 +61,9 @@ const FRAMEWORKS: Framework[] = [
     color: green,
     variants: [
       {
-        name: 'vue-mobile-ts',
-        display: 'TypeScript(Mobile)',
-        color: blue,
-      },
-      {
         name: 'vue-mobile',
         display: 'JavaScript(Mobile)',
         color: yellow,
-      },
-      {
-        name: 'vue-pc-ts',
-        display: 'TypeScript(PC)',
-        color: blue,
       },
       {
         name: 'vue-pc',
@@ -87,64 +78,64 @@ const FRAMEWORKS: Framework[] = [
       },
     ],
   },
-  {
-    name: 'tauri',
-    display: 'Tauri',
-    color: magenta,
-    variants: [
-      {
-        name: 'tauri-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'tauri',
-        display: 'JavaScript',
-        color: yellow,
-      },
-      {
-        name: 'custom-create-tauri',
-        display: 'Customize with create-tauri ↗',
-        color: magenta,
-        customCommand: 'pnpm create tauri-app',
-      },
-    ],
-  },
-  {
-    name: 'nest',
-    display: 'Nest',
-    color: redBright,
-    variants: [
-      {
-        name: 'nest-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'custom-create-nest',
-        display: 'Customize with create-nest ↗',
-        color: magenta,
-        customCommand: 'pnpm install -g @nestjs/cli && nest new',
-      },
-    ],
-  },
-  {
-    name: 'uniapp',
-    display: 'Uniapp',
-    color: red,
-    variants: [
-      {
-        name: 'uniapp-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'uniapp',
-        display: 'JavaScript',
-        color: yellow,
-      },
-    ],
-  },
+  // {
+  //   name: 'tauri',
+  //   display: 'Tauri',
+  //   color: magenta,
+  //   variants: [
+  //     {
+  //       name: 'tauri-ts',
+  //       display: 'TypeScript',
+  //       color: blue,
+  //     },
+  //     {
+  //       name: 'tauri',
+  //       display: 'JavaScript',
+  //       color: yellow,
+  //     },
+  //     {
+  //       name: 'custom-create-tauri',
+  //       display: 'Customize with create-tauri ↗',
+  //       color: magenta,
+  //       customCommand: 'pnpm create tauri-app',
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: 'nest',
+  //   display: 'Nest',
+  //   color: redBright,
+  //   variants: [
+  //     {
+  //       name: 'nest-ts',
+  //       display: 'TypeScript',
+  //       color: blue,
+  //     },
+  //     {
+  //       name: 'custom-create-nest',
+  //       display: 'Customize with create-nest ↗',
+  //       color: magenta,
+  //       customCommand: 'pnpm install -g @nestjs/cli && nest new',
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: 'uniapp',
+  //   display: 'Uniapp',
+  //   color: red,
+  //   variants: [
+  //     {
+  //       name: 'uniapp-ts',
+  //       display: 'TypeScript',
+  //       color: blue,
+  //     },
+  //     {
+  //       name: 'uniapp',
+  //       display: 'JavaScript',
+  //       color: yellow,
+  //     },
+  //   ],
+  // },
 ]
 
 const TEMPLATES = FRAMEWORKS.map((f) => f.variants.map((v) => v.name)).reduce(

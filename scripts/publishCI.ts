@@ -1,3 +1,3 @@
-import { publish } from '@vitejs/release-scripts'
+import { publish } from '@vii/release-scripts'
 
-publish({ defaultPackage: '@vyron', provenance: false, packageManager: 'pnpm' })
+publish({ defaultPackage: '', provenance: false, packageManager: 'pnpm' })

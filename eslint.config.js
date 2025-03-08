@@ -150,6 +150,7 @@ export default tseslint.config(
       'regexp/prefer-regexp-test': 'error',
       // in some cases using explicit letter-casing is more performant than the `i` flag
       'regexp/use-ignore-case': 'off',
+      'regexp/no-dupe-disjunctions': 'off',
     },
   },
   {

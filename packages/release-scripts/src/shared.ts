@@ -173,7 +173,7 @@ export async function getActiveVersion(
       .stdout
   } catch (e: any) {
     // Not published yet
-    if (e.stderr.startsWith('npm ERR! code E404')) return
+    if (e.stderr.startsWith('npm error code E404')) return
     throw e
   }
 }

@@ -1,6 +1,5 @@
 {
   "name": "vii",
-  "private": true,
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -11,7 +10,7 @@
     "build": "pnpm -r --filter='./packages/*' run build",
     "typecheck": "tsc -p scripts --noEmit && pnpm -r --parallel run typecheck",
     "release": "tsx scripts/release.ts",
-    "ci-publish": "cross-env NPM_TOKEN=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 tsx scripts/publishCI.ts @vyron/cli@0.0.3"
+    "ci-publish": "cross-env NPM_TOKEN=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 tsx scripts/publishCI.ts cli@0.0.6"
   },
   "nano-staged": {
     "*.md": "prettier --write",
