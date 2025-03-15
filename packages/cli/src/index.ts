@@ -170,9 +170,7 @@ async function init() {
     'projectName' | 'overwrite' | 'packageName' | 'framework' | 'variant'
   >
 
-  prompts.override({
-    overwrite: argv.overwrite,
-  })
+  prompts.override({ overwrite: argv.overwrite })
 
   try {
     result = await prompts(
@@ -450,8 +448,6 @@ function downloadProject(
   })
   return promise
 }
-
-Promise.withResolvers()
 
 function promisify<T = any>(): PromiseWithResolvers<T> {
   let resolve: (value: T | PromiseLike<T>) => void
