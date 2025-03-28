@@ -1,6 +1,6 @@
 {
   "name": "@vyron/useAxios",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a custom useAxios base on @vueUse/integrations/useAxios",
   "type": "module",
   "exports": {
