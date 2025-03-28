@@ -152,8 +152,7 @@ export function useAxios<
   T = any,
   R = AxiosResponse<T>,
   D = any,
-  O extends
-    UseAxiosOptionsWithInitialData<T> = UseAxiosOptionsWithInitialData<T>,
+  O extends UseAxiosOptions<T> = UseAxiosOptions<T>,
 >(
   url: string,
   config: AxiosRequestConfig<D>,
@@ -170,8 +169,7 @@ export function useAxios<
   T = any,
   R = AxiosResponse<T>,
   D = any,
-  O extends
-    UseAxiosOptionsWithInitialData<T> = UseAxiosOptionsWithInitialData<T>,
+  O extends UseAxiosOptions<T> = UseAxiosOptions<T>,
 >(
   url: string,
   config: AxiosRequestConfig<D>,

@@ -160,6 +160,9 @@ importers:
       axios:
         specifier: ^1.8.4
         version: 1.8.4
+      tsx:
+        specifier: ^4.19.3
+        version: 4.19.3
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.7.2)
