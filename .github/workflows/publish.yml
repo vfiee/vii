@@ -6,6 +6,7 @@ on:
       - "cli@*"
       - "utils@*"
       - "release-scripts@*"
+      - "useAxios@*"
 
 jobs:
   publish:
