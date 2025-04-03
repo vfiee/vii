@@ -5,7 +5,7 @@ release({
   repo: 'vii',
   ignorePublint: true,
   ignoreReleaseConfirm: true,
-  packages: ['cli', 'utils', 'release-scripts', 'useAxios'],
+  packages: ['cli', 'utils', 'release-scripts', 'use-axios'],
   toTag: (pkg, version) => `${pkg}@${version}`,
   logChangelog: (pkg) => logRecentCommits(pkg),
   generateChangelog: async (pkgName) => {
