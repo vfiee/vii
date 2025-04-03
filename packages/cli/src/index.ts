@@ -8,7 +8,7 @@ import colors from 'picocolors'
 import prompts from 'prompts'
 import { version } from '../package.json'
 
-const { green, red, reset, yellow } = colors
+const { green, red, reset, yellow, blue, magenta, redBright } = colors
 
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string. See #4606
@@ -34,12 +34,9 @@ Options:
 
 Available templates:
 ${green('vue-pc')}
-${red('vue-mobile')}`
-
-// ${cyan('tauri')}
-// ${yellow('taro')}
-// ${magenta('nest')}
-// ${redBright('uniapp')}
+${red('vue-mobile')}
+${magenta('nest-ts')}
+${blue('uniapp-ts')}`
 
 const versionMessage = `\
 ${green(`vii current version: v${version}`)}`
@@ -61,7 +58,7 @@ type FrameworkVariant = {
 const FRAMEWORKS: Framework[] = [
   {
     name: 'vue',
-    display: 'Vue',
+    display: 'vue',
     color: green,
     variants: [
       {
@@ -105,41 +102,41 @@ const FRAMEWORKS: Framework[] = [
   //     },
   //   ],
   // },
-  // {
-  //   name: 'nest',
-  //   display: 'Nest',
-  //   color: redBright,
-  //   variants: [
-  //     {
-  //       name: 'nest-ts',
-  //       display: 'TypeScript',
-  //       color: blue,
-  //     },
-  //     {
-  //       name: 'custom-create-nest',
-  //       display: 'Customize with create-nest ↗',
-  //       color: magenta,
-  //       customCommand: 'pnpm install -g @nestjs/cli && nest new',
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: 'uniapp',
-  //   display: 'Uniapp',
-  //   color: red,
-  //   variants: [
-  //     {
-  //       name: 'uniapp-ts',
-  //       display: 'TypeScript',
-  //       color: blue,
-  //     },
-  //     {
-  //       name: 'uniapp',
-  //       display: 'JavaScript',
-  //       color: yellow,
-  //     },
-  //   ],
-  // },
+  {
+    name: 'nest',
+    display: 'nestjs',
+    color: redBright,
+    variants: [
+      {
+        name: 'nest-ts',
+        display: 'TypeScript',
+        color: blue,
+      },
+      {
+        name: 'custom-create-nest',
+        display: 'Customize with create-nest ↗',
+        color: magenta,
+        customCommand: 'pnpm dlx @nestjs/cli new',
+      },
+    ],
+  },
+  {
+    name: 'uniapp',
+    display: 'uni-app',
+    color: red,
+    variants: [
+      {
+        name: 'uniapp-ts',
+        display: 'TypeScript',
+        color: blue,
+      },
+      {
+        name: 'uniapp',
+        display: 'JavaScript',
+        color: yellow,
+      },
+    ],
+  },
 ]
 
 const TEMPLATES = FRAMEWORKS.map((f) => f.variants.map((v) => v.name)).reduce(
@@ -254,7 +251,7 @@ async function init() {
             framework.variants.map((variant) => {
               const variantColor = variant.color
               return {
-                title: variantColor(variant.display || variant.name),
+                title: variantColor(variant.name || variant.display),
                 value: variant.name,
               }
             }),

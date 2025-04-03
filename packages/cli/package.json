@@ -17,7 +17,8 @@
     "build": "unbuild",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp -y --all"
+    "release": "bumpp -y --all",
+    "start": "tsx ./src/index.ts"
   },
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
