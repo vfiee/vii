@@ -1,3 +1,12 @@
+## 0.1.2 (2025-04-03)
+
+
+### Features
+
+* 初始化useAxios ([9db9ec2](https://github.com/vfiee/vii/commit/9db9ec23a41ae4e907f6a55b8df05cc848085e38))
+
+
+
 ## 0.1.1 (2025-03-28)
 
 
