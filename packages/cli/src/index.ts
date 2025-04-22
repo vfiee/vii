@@ -137,6 +137,18 @@ const FRAMEWORKS: Framework[] = [
       },
     ],
   },
+  {
+    name: 'crm',
+    display: 'crm',
+    color: red,
+    variants: [
+      {
+        name: 'crm',
+        display: 'JavaScript',
+        color: blue,
+      },
+    ],
+  },
 ]
 
 const TEMPLATES = FRAMEWORKS.map((f) => f.variants.map((v) => v.name)).reduce(
