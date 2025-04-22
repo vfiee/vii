@@ -33,7 +33,7 @@ jobs:
         run: pnpm install
 
       - name: Build Package
-        run: pnpm --filter @vyron/{{github.ref_name}} build
+        run: pnpm --filter @vyron/${{github.ref_name}} build
 
       - name: Publish package
         run: pnpm run ci-publish ${{ github.ref_name }}
