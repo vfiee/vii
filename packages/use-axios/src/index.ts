@@ -202,6 +202,8 @@ export function useAxios<
   const isFinished = shallowRef(false)
   const isLoading = shallowRef(false)
   const isAborted = shallowRef(false)
+  const isError = shallowRef(false)
+  const isSuccess = shallowRef(false)
   const error = shallowRef<unknown>()
 
   let abortController: AbortController = new AbortController()
@@ -214,6 +216,8 @@ export function useAxios<
     isAborted.value = true
     isLoading.value = false
     isFinished.value = false
+    isError.value = false
+    isSuccess.value = false
   }
 
   const loading = (loading: boolean) => {
@@ -292,10 +296,12 @@ export function useAxios<
         const result = r.data
         data.value = result
         onSuccess(result)
+        isSuccess.value = true
       })
       .catch((e: any) => {
         error.value = e
         onError(e)
+        isError.value = true
       })
       .finally(() => {
         options.onFinish?.()
@@ -317,6 +323,8 @@ export function useAxios<
     isCanceled: isAborted,
     abort,
     execute,
+    isSuccess,
+    isError,
   } as OverallUseAxiosReturn<T, R, D>
 
   return {
