@@ -147,6 +147,11 @@ const FRAMEWORKS: Framework[] = [
         display: 'JavaScript',
         color: blue,
       },
+      {
+        name: 'crm-mobile',
+        display: 'JavaScript',
+        color: green,
+      },
     ],
   },
 ]
