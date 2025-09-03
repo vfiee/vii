@@ -1,3 +1,3 @@
-#!/usr/bin/env -S NODE_OPTIONS=--no-deprecation node
+#!/usr/bin/env node
 
 import './dist/index.mjs'

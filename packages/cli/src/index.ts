@@ -8,6 +8,8 @@ import colors from 'picocolors'
 import prompts from 'prompts'
 import { version } from '../package.json'
 
+process.env.NODE_OPTIONS = '--no-deprecation'
+
 const { green, red, reset, yellow, blue, magenta, redBright } = colors
 
 // Avoids autoconversion to number of the project name by defining that the args
